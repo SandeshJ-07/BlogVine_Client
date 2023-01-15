@@ -1,0 +1,9 @@
+.glow
+{
+    /* position: absolute; */
+    height: 100%;
+    width:100%;
+    left:0;
+    top:0;
+    background-image: radial-gradient(#000,#1a1a1a, rgba(255, 255, 255, 0.452));
+}

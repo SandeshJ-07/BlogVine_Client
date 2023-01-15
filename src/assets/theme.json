@@ -1,0 +1,9 @@
+{
+    "colors":{
+        "background" : "#1a1a1a",
+        "lbackground":"#ffffff",
+        "textColor" : "#ffffff",
+        "ltextColor" : "#000000",
+        "green" : "#3DDB6A"
+    }
+}
