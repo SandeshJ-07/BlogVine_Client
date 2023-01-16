@@ -9,6 +9,7 @@ import {
 // Stylesheets
 import "../src/assets/stylesheet/index.css";
 import "../src/assets/stylesheet/style.css";
+import Discover from "./Pages/Discover";
 
 // Landing Page
 import Landing from "./Pages/Landing";
@@ -19,6 +20,7 @@ root.render(
     <Router>
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/discover" element={ <Discover/> }/>
       </Routes>
     </Router>
   </React.StrictMode>
