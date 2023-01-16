@@ -13,18 +13,26 @@ import medussaHead from "../assets/images/medussaHead.png";
 import head from "../assets/images/Head.png";
 import head2 from "../assets/images/Head.png";
 import Discover from "../Components/Pages/Discover";
+import ThinkerStatue from "../assets/images/ThinkerStatue.png";
+import Footer from "../Components/Pages/Footer";
 
 const Landing = () => {
-  
   return (
     <div>
       <Navbar />
       {/* Hero Section */}
       <div
-        className={`flex flex-row items-center dark:bg-[${styles.colors.background}] bg-[${styles.colors.lbackground}] px-3 sm:px-8 sm:py-8 py-2.5 w-[100vw] min-h-screen sm:min-h-[100vh] flex-col sm:flex-row`}
+        className={`flex flex-row items-center dark:bg-[${styles.colors.background}] bg-[${styles.colors.lbackground}] px-3 sm:px-8 sm:py-8 py-20 w-[100vw] flex-col sm:flex-row min-h-screen`}
       >
         <div className="container w-full sm:w-8/12 md:3/4 px-4 text-center sm:text-left p-10 sm:py-0">
-          <div className={`font-light f-cambria text-[${styles.colors.ltextColor}] dark:text-[${styles.colors.textColor}]`}>
+          <img
+            src={ThinkerStatue}
+            alt=""
+            className="absolute opacity-30 z-[10] top-1/4 left-0 block sm:hidden w-1/2"
+          />
+          <div
+            className={`font-light f-cambria text-[${styles.colors.ltextColor}] dark:text-[${styles.colors.textColor}] z-[40]`}
+          >
             <p className="lg:text-2xl md:text-2xl sm:text-lg text-lg">Your</p>
             <p
               className={`lg:text-5xl md:text-5xl sm:text-3xl text-4xl leading-14 text-[${styles.colors.green}]`}
@@ -32,22 +40,24 @@ const Landing = () => {
               Thoughts
             </p>
             <p className="lg:text-2xl md:text-2xl sm:text-lg text-lg leading-10">
-              Are Your
+              Are The
             </p>
             <p className={`text-5xl text-[${styles.colors.green}]`}>
               Vines Of Your World.
             </p>
           </div>
-          <p className={`f-helvetica py-7 text-lg w-full sm:w-3/4  text-[${styles.colors.ltextColor}] dark:text-[${styles.colors.textColor}]`}>
+          <p
+            className={`f-helvetica py-7 text-lg w-full sm:w-3/4  text-[${styles.colors.ltextColor}] dark:text-[${styles.colors.textColor}] z-[40]`}
+          >
             Discover stories, thinking, and expertise from writers on any topic.
           </p>
           <button
-            className={`dark:bg-[${styles.colors.lbackground}] ${landingStyles.button} dark:text-[${styles.colors.ltextColor}] bg-[${styles.colors.background}] text-[${styles.colors.textColor}] rounded-3xl px-8 py-2 font-semibold hover:bg-[${styles.colors.green}]`}
+            className={`z-[40] dark:bg-[${styles.colors.lbackground}] ${landingStyles.button} dark:text-[${styles.colors.ltextColor}] bg-[${styles.colors.background}] text-[${styles.colors.textColor}] rounded-3xl px-8 py-2 font-semibold hover:bg-[${styles.colors.green}]`}
           >
-            Discover More
+            <a href="/discover"> Discover More</a>
           </button>
         </div>
-        <div className="w-full sm:w-4/12 md:w-3/4 px-4 hidden sm:flex rounded-full relative max-h-screen top-0 items-end">
+        <div className="w-full sm:w-4/12 md:w-3/4 px-4 hidden sm:flex rounded-full relative top-0 items-end py-16">
           <img
             src={medussaHead}
             alt="medussaHead"
@@ -69,7 +79,9 @@ const Landing = () => {
       <Trending />
 
       {/* Discover More */}
-      <Discover/>
+      <Discover />
+
+      <Footer />
     </div>
   );
 };
