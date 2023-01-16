@@ -24,7 +24,7 @@ const Landing = () => {
       <div
         className={`flex flex-row items-center dark:bg-[${styles.colors.background}] bg-[${styles.colors.lbackground}] px-3 sm:px-8 sm:py-8 py-20 w-[100vw] flex-col sm:flex-row min-h-screen`}
       >
-        <div className="container w-full sm:w-8/12 md:3/4 px-4 text-center sm:text-left p-10 sm:py-0">
+        <div className="container w-full sm:w-8/12 md:3/4 px-4 text-center sm:text-left p-10 sm:py-0 items-center">
           <img
             src={ThinkerStatue}
             alt=""
