@@ -97,7 +97,7 @@ const Navbar = (props) => {
             </li>
             <li>
               <a
-                href="/"
+                href="/about"
                 class="block py-2 pl-4 pr-5 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
                 Our Story
@@ -111,6 +111,7 @@ const Navbar = (props) => {
                 Write
               </a>
             </li>
+            {user == null && (
             <li>
               <a
                 href="/"
@@ -118,7 +119,7 @@ const Navbar = (props) => {
               >
                 Sign In
               </a>
-            </li>
+            </li>)}
           </ul>
         </div>
       </div>
