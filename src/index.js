@@ -14,7 +14,6 @@ import "../src/assets/stylesheet/style.css";
 import Landing from "./Pages/Landing";
 import Discover from "./Pages/Discover";
 import Terms from "./Pages/Terms";
-import AboutPage from "./Pages/About";
 import Privacy from "./Pages/Privacy";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -24,7 +23,6 @@ root.render(
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/discover" element={ <Discover/> }/>
-        <Route path="/about" element={<AboutPage/>}/>
         <Route path="/terms" element ={<Terms/>}/>
         <Route path="/privacy" element={<Privacy/>}/>
       </Routes>
