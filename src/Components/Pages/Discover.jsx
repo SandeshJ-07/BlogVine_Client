@@ -163,13 +163,13 @@ const Discover = () => {
             <a href="/" className="mr-4 py-1">
               Status
             </a>
-            <a href="/" className="mr-4 py-1">
+            <a href="/privacy" className="mr-4 py-1">
               Privacy
             </a>
-            <a href="/" className="mr-4 py-1">
+            <a href="/terms" className="mr-4 py-1">
               Terms
             </a>
-            <a href="/" className="mr-4 py-1">
+            <a href="/about" className="mr-4 py-1">
               About
             </a>
             <a href="/" className="mr-4 py-1">

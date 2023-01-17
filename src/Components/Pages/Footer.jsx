@@ -14,9 +14,9 @@ const Footer = () => {
         <span className={`text-[${styles.colors.green}]`}>Vines</span>
       </p>
       <div className="flex flex-wrap text-xs space-x-4 my-2 mb-4">
-        <a href="/">About</a>
+        <a href="/about">About</a>
         <a href="/">Help</a>
-        <a href="/">Terms</a>
+        <a href="/terms">Terms</a>
         <a href="/">Privacy</a>
       </div>
       <hr />    
