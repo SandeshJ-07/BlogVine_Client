@@ -15,6 +15,7 @@ import Landing from "./Pages/Landing";
 import Discover from "./Pages/Discover";
 import Terms from "./Pages/Terms";
 import Privacy from "./Pages/Privacy";
+import ErrorPage from "./Pages/Error";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -25,6 +26,8 @@ root.render(
         <Route path="/discover" element={ <Discover/> }/>
         <Route path="/terms" element ={<Terms/>}/>
         <Route path="/privacy" element={<Privacy/>}/>
+
+        <Route path="*" element={<ErrorPage/>} />
       </Routes>
     </Router>
   </React.StrictMode>
