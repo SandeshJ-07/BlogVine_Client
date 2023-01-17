@@ -24,11 +24,11 @@ const Landing = () => {
       <div
         className={`flex flex-row items-center dark:bg-[${styles.colors.background}] bg-[${styles.colors.lbackground}] px-3 sm:px-8 sm:py-8 py-20 w-[100vw] flex-col sm:flex-row min-h-screen`}
       >
-        <div className="container w-full sm:w-8/12 md:3/4 px-4 text-center sm:text-left p-10 sm:py-0 items-center">
+        <div className="container w-full sm:w-8/12 md:3/4 px-4 text-center sm:text-left p-10 sm:py-0 items-center h-[80vh] sm:h-auto pt-28">
           <img
             src={ThinkerStatue}
             alt=""
-            className="absolute opacity-30 z-[10] top-1/4 left-0 block sm:hidden w-1/2"
+            className="absolute opacity-30 z-[10] top-3/4 left-0 block sm:hidden w-1/2"
           />
           <div
             className={`font-light f-cambria text-[${styles.colors.ltextColor}] dark:text-[${styles.colors.textColor}] z-[40]`}
@@ -51,11 +51,13 @@ const Landing = () => {
           >
             Discover stories, thinking, and expertise from writers on any topic.
           </p>
-          <button
-            className={`z-[40] dark:bg-[${styles.colors.lbackground}] ${landingStyles.button} dark:text-[${styles.colors.ltextColor}] bg-[${styles.colors.background}] text-[${styles.colors.textColor}] rounded-3xl px-8 py-2 font-semibold hover:bg-[${styles.colors.green}]`}
-          >
-            <a href="/discover"> Discover More</a>
-          </button>
+          <a href="/discover" className="z-[40]">
+            <button
+              className={`z-[40] dark:bg-[${styles.colors.lbackground}] ${landingStyles.button} dark:text-[${styles.colors.ltextColor}] bg-[${styles.colors.background}] text-[${styles.colors.textColor}] rounded-3xl px-8 py-2 font-semibold hover:bg-[${styles.colors.green}]`}
+            >
+              Discover More
+            </button>
+          </a>
         </div>
         <div className="w-full sm:w-4/12 md:w-3/4 px-4 hidden sm:flex rounded-full relative top-0 items-end py-16">
           <img
