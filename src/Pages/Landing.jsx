@@ -22,7 +22,7 @@ const Landing = () => {
       <Navbar />
       {/* Hero Section */}
       <div
-        className={`flex flex-row items-center dark:bg-[${styles.colors.background}] bg-[${styles.colors.lbackground}] px-3 sm:px-8 sm:py-8 py-20 w-[100vw] flex-col sm:flex-row min-h-screen`}
+        className={`flex flex-row items-center dark:bg-[${styles.colors.background}] bg-[${styles.colors.lbackground}] px-3 sm:px-8 sm:py-8 py-20 w-[100vw] flex-col sm:flex-row min-h-screen `}
       >
         <div className="container w-full sm:w-8/12 md:3/4 px-4 text-center sm:text-left p-10 sm:py-0 items-center h-[80vh] sm:h-auto pt-28">
           <img
@@ -59,7 +59,7 @@ const Landing = () => {
             </button>
           </a>
         </div>
-        <div className="w-full sm:w-4/12 md:w-3/4 px-4 hidden sm:flex rounded-full relative top-0 items-end py-16">
+        <div className="w-full sm:w-4/12 md:w-3/4 px-4 hidden sm:flex rounded-full relative top-0 items-end py-16 bg-green-500 dark:bg-transparent">
           <img
             src={medussaHead}
             alt="medussaHead"
@@ -73,7 +73,7 @@ const Landing = () => {
           <img
             src={head2}
             alt="Head2"
-            className="w-1/5 sm:w-10/12 md:w-3/5 z-[10] absolute -left-10 sm:-left-10 md:-left-[screem/40] lg:left-10 opacity-90 dark:opacity-30 -scale-x-100"
+            className="w-1/5 sm:w-10/12 md:w-3/5 z-[10] absolute -left-10 sm:-left-10 md:-left-[screen/40] lg:left-10 opacity-90 dark:opacity-30 -scale-x-100"
           />
         </div>
       </div>

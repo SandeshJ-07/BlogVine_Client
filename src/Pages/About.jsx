@@ -42,18 +42,14 @@ const AboutPage = () => {
       <div
         className={`dark:bg-[${styles.colors.background}] dark:text-[${styles.colors.textColor}] bg-[${styles.colors.lbackground}] text-[${styles.colors.ltextColor}] px-3 sm:px-12 sm:py-8 sm:pt-18 py-20`}
       >
-        <div>
+        <div className="text-center">
           <p
-            className={`sm:mt-24 mb-6 capitalize f-cambria text-2xl sm:text-4xl text-[${styles.colors.green}]`}
+            className={`sm:mt-24 mb-6 capitalize f-cambria sm:text-4xl lg:w-1/2 w-3/4 mx-auto text-4xl md:text-7xl`}
           >
-            About
+            Unveil Your <span className={`text-[${styles.colors.green}]`}>Vines</span>.
           </p>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-            suscipit blanditiis, sit veritatis quos quas ad magni, totam
-            laboriosam exercitationem doloremque placeat cumque consequatur
-            quaerat hic ducimus, labore animi qui voluptatibus deleniti nemo
-            soluta. Quia vitae laboriosam at autem voluptatum.
+          The best ideas can change who we are. BligVines is where those ideas take shape, take off, and spark powerful conversations. We’re an open platform where over 100 million readers come to find insightful and dynamic thinking.
           </p>
         </div>
         <div className="flex my-12 border-y-[0.5px] border-black dark:border-white items-center  flex-col lg:flex-row">
@@ -102,7 +98,7 @@ const AboutPage = () => {
         <div className="flex my-12 border-y-[0.5px] py-0 border-black dark:border-white flex-col lg:flex-row">
           <div className="w-full text-center lg:text-left lg:w-1/2 lg:border-r border-black dark:border-white border-0 text-4xl md:text-7xl py-8">
             <p className="w-full lg:w-8/12 f-cambria">
-              Over 100 million readers and growing.
+              Over <span className={`text-[${styles.colors.green}]`}>100</span> million readers and growing.
             </p>
           </div>
           <div
@@ -124,7 +120,7 @@ const AboutPage = () => {
         </div>
         <div className="text-center">
           <p className="f-cambria w-1/2 mx-auto text-4xl md:text-7xl">
-            Get more with membership.
+            Get more with <span className={`text-[${styles.colors.green}]`}>membership</span>.
           </p>
           <p className="w-6/12 mx-auto py-4">
             Become a BlogVines member to enjoy unlimited access and directly
@@ -148,7 +144,7 @@ const AboutPage = () => {
               Enjoy unlimited access to every story across all of your devices.
             </p>
           </div>
-          <div className="w-full md:w-6/12 md:border-l border-0 py-4 pl-0 lg:pl-8 border-black dark:border-white">
+          <div className="w-full md:w-6/12 lg:border-l border-0 py-4 pl-0 lg:pl-8 border-black dark:border-white">
             <p className="text-3xl font-semibold">Reward quality content.</p>
             <img
               src={Suport}

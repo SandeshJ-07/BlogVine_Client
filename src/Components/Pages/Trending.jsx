@@ -53,7 +53,7 @@ const Trending = () => {
 
   return (
     <div
-      className={`dark:bg-[${styles.colors.background}] bg-[${styles.colors.lbackground}] px-8 sm:px-12 sm:py-8 w-[100vw] text-[${styles.colors.ltextColor}] dark:text-[${styles.colors.textColor}]`}
+      className={`dark:bg-[${styles.colors.background}] bg-[${styles.colors.lbackground}] px-4 sm:px-12 sm:py-8 w-[100vw] text-[${styles.colors.ltextColor}] dark:text-[${styles.colors.textColor}]`}
     >
       <div className="flex space-x-2 items-end">
         <BiTrendingUp

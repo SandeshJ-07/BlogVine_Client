@@ -13,7 +13,7 @@ const Terms = () => {
     <div>
       <Navbar />
       <div
-        className={`dark:bg-[${styles.colors.background}] dark:text-[${styles.colors.textColor}] bg-[${styles.colors.lbackground}] text-[${styles.colors.ltextColor}] px-3 sm:px-12 sm:py-8 sm:pt-18 pt-20`}
+        className={`dark:bg-[${styles.colors.background}] dark:text-[${styles.colors.textColor}] bg-[${styles.colors.lbackground}] text-[${styles.colors.ltextColor}] px-3 sm:px-12 sm:py-8 sm:pt-18 pt-20 py-12`}
       >
         <p className={`sm:mt-24 capitalize f-helvetica text-3xl font-semibold`}>
           Terms Of Services
