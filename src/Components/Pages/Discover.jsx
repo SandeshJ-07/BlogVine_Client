@@ -83,7 +83,7 @@ const Discover = () => {
 
   return (
     <div
-      className={`dark:bg-[${styles.colors.background}] bg-[${styles.colors.lbackground}] px-8 sm:px-12 sm:py-8 w-[100vw] text-[${styles.colors.ltextColor}] dark:text-[${styles.colors.textColor}] py-4 -my-2 py-2`}
+      className={`dark:bg-[${styles.colors.background}] bg-[${styles.colors.lbackground}] px-4 sm:px-12 sm:py-8 w-[100vw] text-[${styles.colors.ltextColor}] dark:text-[${styles.colors.textColor}] py-4 -my-2 py-2`}
     >
       <div className="flex space-x-2 items-center">
         <BiCompass
@@ -95,7 +95,7 @@ const Discover = () => {
       </div>
 
       <div className=" grid grid-flow-row md:grid-flow-col grid-rows-12 md:grid-cols-12 md:grid-rows-1 py-4">
-        <div className="row-span-12 md:col-span-8 order-1 md:order-none pr-4">
+        <div className="row-span-12 md:col-span-8 order-1 md:order-none pr-4 pl-4">
           {blogs.map((item, index) => {
             return (
               <div
