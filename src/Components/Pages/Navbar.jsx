@@ -1,11 +1,16 @@
 import React from "react";
 import styles from "../../assets/theme.json";
 
+// Components
+import LoginModal from "./LoginModal";
+
 // Icons
 import { BiMenu } from "react-icons/bi";
 
 const Navbar = (props) => {
   const user = props.user;
+
+  const [openState, setOpenState] = React.useState(false);
 
   return (
     <nav
@@ -125,8 +130,8 @@ const Navbar = (props) => {
                 </a>
               </li>
               <li>
-                <a
-                  href="/"
+                <p
+                  onClick={() => setOpenState(true)}
                   class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
@@ -143,18 +148,16 @@ const Navbar = (props) => {
                     ></path>
                   </svg>
                   <span class="flex-1 ml-3 whitespace-nowrap">Sign In</span>
-                </a>
+                </p>
               </li>
-
             </ul>
           </div>
         </div>
         <div class="flex items-center md:order-2">
           <button
             type="button"
-            class={`flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 ${
-              user != null ? "" : "hidden"
-            }`}
+            class={`flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 ${user != null ? "" : "hidden"
+              }`}
             id="user-menu-button"
             aria-expanded="false"
             data-dropdown-toggle="user-dropdown"
@@ -248,17 +251,18 @@ const Navbar = (props) => {
             </li>
             {user == null && (
               <li>
-                <a
-                  href="/"
-                  class="block py-2 pl-4 pr-5 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                <p
+                  onClick={() => setOpenState(true)}
+                  class="block py-2 pl-4 pr-5 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer"
                 >
                   Sign In
-                </a>
+                </p>
               </li>
             )}
           </ul>
         </div>
       </div>
+      <LoginModal isOpen={openState} setIsOpen={setOpenState} />
     </nav>
   );
 };
