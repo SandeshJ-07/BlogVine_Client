@@ -4,13 +4,23 @@ import styles from "../../assets/theme.json";
 // Components
 import LoginModal from "./LoginModal";
 
+// React Redux
+import { useDispatch, useSelector } from 'react-redux'
+import { logOut } from "../../features/user/userSlice";
+
+
 // Icons
 import { BiMenu } from "react-icons/bi";
 
-const Navbar = (props) => {
-  const user = props.user;
+const Navbar = () => {
 
-  const [openState, setOpenState] = React.useState(false);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  console.log(user);
+
+  const [showMenu, setShowMenu] = React.useState(false);
+
+  const [LoginOpenState, setLoginOpenState] = React.useState(false);
 
   return (
     <nav
@@ -131,7 +141,7 @@ const Navbar = (props) => {
               </li>
               <li>
                 <p
-                  onClick={() => setOpenState(true)}
+                  onClick={() => setLoginOpenState(true)}
                   class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <svg
@@ -153,33 +163,35 @@ const Navbar = (props) => {
             </ul>
           </div>
         </div>
-        <div class="flex items-center md:order-2">
+        <div class="flex md:order-2">
           <button
             type="button"
-            class={`flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 ${user != null ? "" : "hidden"
+            class={`flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 ${user != null && user.loggedIn ? "" : "hidden"
               }`}
             id="user-menu-button"
             aria-expanded="false"
             data-dropdown-toggle="user-dropdown"
             data-dropdown-placement="bottom"
+            onClick={() => { setShowMenu(!showMenu) }}
           >
             <span class="sr-only">Open user menu</span>
             <img
               class="w-8 h-8 rounded-full"
-              src="/docs/images/people/profile-picture-3.jpg"
+              src="https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector.png"
               alt="userProfile"
             />
           </button>
           <div
-            class={`z-50 hidden my-4 text-base list-none bg-[${styles.colors.lbackground}] text-black divide-y divide-gray-100 rounded shadow dark:bg-[${styles.colors.background}]`}
+            class={`z-100 ${showMenu ? "absolute" : "hidden"} my-4 text-base list-none bg-[${styles.colors.lbackground}] text-black divide-y divide-gray-100 rounded shadow dark:bg-[${styles.colors.background}]`}
             id="user-dropdown"
+            style={{ left: "-10% !important", transform: "translate(1100px, 62px)" }}
           >
             <div class="px-4 py-3">
               <span class="block text-sm text-gray-900 dark:text-white">
-                Bonnie Green
+                {user.username}
               </span>
               <span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">
-                name@flowbite.com
+                {user.email}
               </span>
             </div>
             <ul class="py-1" aria-labelledby="user-menu-button">
@@ -208,12 +220,12 @@ const Navbar = (props) => {
                 </a>
               </li>
               <li>
-                <a
-                  href="/"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                <p
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"
+                  onClick={()=>{dispatch(logOut())}}
                 >
                   Sign out
-                </a>
+                </p>
               </li>
             </ul>
           </div>
@@ -249,10 +261,10 @@ const Navbar = (props) => {
                 Write
               </a>
             </li>
-            {user == null && (
+            {(user == null || user.loggedIn === false) && (
               <li>
                 <p
-                  onClick={() => setOpenState(true)}
+                  onClick={() => setLoginOpenState(true)}
                   class="block py-2 pl-4 pr-5 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer"
                 >
                   Sign In
@@ -262,7 +274,8 @@ const Navbar = (props) => {
           </ul>
         </div>
       </div>
-      <LoginModal isOpen={openState} setIsOpen={setOpenState} />
+
+      <LoginModal isOpen={LoginOpenState} setIsOpen={setLoginOpenState} />
     </nav>
   );
 };
