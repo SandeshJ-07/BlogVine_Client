@@ -16,6 +16,7 @@ import Discover from "./Pages/Discover";
 import Terms from "./Pages/Terms";
 import Privacy from "./Pages/Privacy";
 import ErrorPage from "./Pages/Error";
+import SocialAuth from "./Pages/SocialLogin.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -29,6 +30,7 @@ root.render(
             <Route path="/about" element={<AboutPage />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/social/login/" element ={<SocialAuth/>}/>
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </Router>

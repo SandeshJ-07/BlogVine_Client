@@ -1,3 +1,4 @@
+// use this file to create the store and export it
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "../features/user/userSlice.js";
 import storage from 'redux-persist/lib/storage';
