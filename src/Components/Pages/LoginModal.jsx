@@ -17,10 +17,9 @@ import landingStyles from "../../assets/stylesheet/landing.module.css";
 import { XIcon } from "@heroicons/react/outline";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import Google from "../../assets/images/google.svg";
-import Microsoft from "../../assets/images/microsoft.svg";
 
 // API Calls
-import { sendOTP, verifyUserDetails, UserRegister, UserLogin, getUserDetails } from "../../service/api";
+import { sendOTP, verifyUserDetails, UserRegister, UserLogin, getUserDetails, server_url } from "../../service/api";
 
 // Login Modal
 const LoginModal = (props) => {
@@ -41,7 +40,7 @@ const LoginModal = (props) => {
   // const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  // Login Form or Signup Form
+  // Login Form or Signup Form  
   const [isLogin, setIsLogin] = React.useState(true);
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -355,7 +354,7 @@ const LoginModal = (props) => {
                     </div>
                     {loginDetail.passwordError && (<p id="standard_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{loginDetail.passwordError}</p>)}
                   </div>
-        <p onClick className={`text-xs pt-4 hover:text-[${styles.colors.green}] cursor-pointer`}>Forgot Password ?</p>
+                  <a href="/account/password/forgot-password" className={`text-xs block pt-4 hover:text-[${styles.colors.green}] cursor-pointer`}>Forgot Password ?</a>
                   <button
                     className={`text-sm z-[40] dark:bg-[${styles.colors.green}] ${landingStyles.button} dark:text-[${styles.colors.ltextColor}] bg-[${styles.colors.background}] text-[${styles.colors.textColor}] rounded-3xl px-8 py-2 bg-[${styles.colors.green}] mt-8 ${login.password && login.username ? "cursor-pointer" : "cursor-not-allowed"}`}
                     onClick={() => loginFunc()}
@@ -366,7 +365,7 @@ const LoginModal = (props) => {
                     </svg>) : "Continue"}
                   </button>
                   <div className="flex space-x-3 justify-center lg:justify-start  py-4">
-                    <a href="http://localhost:80/social/auth/google"><img src={Google} className="h-8 w-8 border-2 border-gray-300 rounded-md p-1 cursor-pointer" alt="Google" /></a>
+                    <a href={`${server_url}/social/auth/google`}><img src={Google} className="h-8 w-8 border-2 border-gray-300 rounded-md p-1 cursor-pointer" alt="Google" /></a>
                   </div>
                   <div className="text-sm">
                     Don't yet have an account yet? <span className="text-green-600 cursor-pointer" onClick={() => setIsLogin(false)}>Sign Up</span>

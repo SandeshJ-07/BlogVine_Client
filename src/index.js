@@ -17,6 +17,7 @@ import Terms from "./Pages/Terms";
 import Privacy from "./Pages/Privacy";
 import ErrorPage from "./Pages/Error";
 import SocialAuth from "./Pages/SocialLogin.jsx";
+import ForgotPassword from "./Pages/ForgotPassword.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -31,6 +32,8 @@ root.render(
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/social/login/" element ={<SocialAuth/>}/>
+            <Route path="/account/password/forgot-password" element={<ForgotPassword />} />
+            <Route path="/account/password/forgot-password/:token" element={<ForgotPassword />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </Router>
