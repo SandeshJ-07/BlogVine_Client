@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// export const server_url = "http://localhost:80";
-export const server_url = "https://blog-vines-server.vercel.app";
+export const server_url = "http://localhost:80";
+// export const server_url = "https://blog-vines-server.vercel.app";
 //  const client_url = "http://localhost:3000";/
 
 // Mail Controller

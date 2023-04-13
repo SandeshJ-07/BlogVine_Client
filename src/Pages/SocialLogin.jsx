@@ -1,5 +1,5 @@
 import React from "react";
-import { getUserDetails, getUserFromSessionId } from "../service/api.js";
+import { getUserFromSessionId } from "../service/api.js";
 
 // React Redux
 import { useDispatch } from 'react-redux'

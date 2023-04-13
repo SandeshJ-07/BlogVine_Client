@@ -37,28 +37,18 @@ const ForgotPassword = () => {
             }
         }
         func();
-    }, []);
+    }, [token]);
 
     // Password Handler
     const passwordHandler = (e) => {
         setNewPass(e.target.value);
-        if (e.target.value.length > 0) {
-            setEnableChangepass(true);
-        } else {
-            setEnableChangepass(false);
-        }
     }
 
     const confrmPassHandler = (e) => {
         setConfirmPass(e.target.value);
-        if (e.target.value.length > 0) {
-            setEnableChangepass(true);
-        } else {
-            setEnableChangepass(false);
-        }
     }
 
-    const [enableChangepass, setEnableChangepass] = React.useState(false);
+    
     const [passAlert, setPassAlert] = React.useState(false);
 
     const changePasswordFunc = async () => {
