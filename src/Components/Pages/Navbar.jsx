@@ -17,7 +17,6 @@ const Navbar = () => {
 
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  console.log(user);
 
   const [showMenu, setShowMenu] = React.useState(false);
 
