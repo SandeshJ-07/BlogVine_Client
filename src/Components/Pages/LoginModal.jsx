@@ -17,14 +17,14 @@ import landingStyles from "../../assets/stylesheet/landing.module.css";
 import { XIcon } from "@heroicons/react/outline";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import Google from "../../assets/images/google.svg";
-import Microsoft from "../../assets/images/microsoft.svg";
 
 // API Calls
-import { sendOTP, verifyUserDetails, UserRegister, UserLogin, getUserDetails } from "../../service/api";
+import { sendOTP, verifyUserDetails, UserRegister, UserLogin, getUserDetails, server_url } from "../../service/api";
 
 // Login Modal
 const LoginModal = (props) => {
 
+  // Password Rules
   const [showPasswordRules, setShowPasswordRules] = React.useState({
     minLength: false,
     oneUpperCase: false,
@@ -32,11 +32,15 @@ const LoginModal = (props) => {
     oneNumber: false,
     oneSpecialChar: false,
   });
+
+  // Used to show password rules in signup form
   const [showPasswordRulesSignUp, setShowPasswordRulesSignUp] = React.useState(false);
+
+  // Used to maintain user in the redux store
   // const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  // Login Form or Signup Form
+  // Login Form or Signup Form  
   const [isLogin, setIsLogin] = React.useState(true);
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -55,11 +59,13 @@ const LoginModal = (props) => {
 
   const [isPasswordField, setIsPasswordField] = React.useState(true);
 
+  //  Function to handle Login form username
   const handleLoginUsernameChange = (e) => {
     setLoginDetail({ ...login, usernameError: null });
     setLogin({ ...login, username: e.target.value });
   }
 
+  //  Function to handle Login form password
   const handleLoginPasswordChange = (e) => {
     setLoginDetail({ ...login, passwordError: null });
     setLogin({ ...login, password: e.target.value });
@@ -73,12 +79,16 @@ const LoginModal = (props) => {
     confirmPassword: "",
   });
 
+  //  Referecne to password and confirm password fields in signup form
   const signupPasswordRef = React.useRef();
   const signupConfirmPasswordRef = React.useRef();
 
+  // Email OTP
   const [emailOTP, setEmailOTP] = React.useState(null);
+  // User input OTP
   const [otpValue, setOtpValue] = React.useState("");
 
+  // Signup Form Error States
   const [signupDetail, setSignupDetail] = React.useState({
     emailError: null,
     passwordError: null,
@@ -87,36 +97,43 @@ const LoginModal = (props) => {
     usernameError: null,
   });
 
+  // Function to handle Signup form username
   const handleUserNameChange = (e) => {
     setSignupDetail({ ...signup, usernameError: null });
     setSignup({ ...signup, username: e.target.value });
   }
 
+  // Function to handle Signup form email
   const handleSignupEmailChange = (e) => {
     setSignupDetail({ ...signup, emailError: null });
     setSignup({ ...signup, email: e.target.value });
   }
 
+  // Function to handle Signup form password
   const handleSignupPasswordChange = (e) => {
     setSignupDetail({ ...signup, passwordError: null });
     setSignup({ ...signup, password: e.target.value });
   }
 
+  // Function to handle Signup form confirm password
   const handleSignupConfirmPasswordChange = (e) => {
     setSignupDetail({ ...signup, confirmPasswordError: null });
     setSignup({ ...signup, confirmPassword: e.target.value });
   }
 
+  // Function to handle Signup form OTP
   const handleOtpValue = (e) => {
     setSignupDetail({ ...signup, otpError: null });
     setOtpValue(e.target.value);
   }
 
 
+  // Function to handle Login form submit
   const [isSignUpPasswordField, setIsSignUpPasswordField] = React.useState(true);
   const [isSignUpConfirmPasswordField, setIsSignUpConfirmPasswordField] = React.useState(true);
 
-  // Function to send OTP
+
+  // Function to send OTP to given email vaildating the signup form details
   const sendOTPFunc = async () => {
     setIsLoading(true);
     setShowPasswordRulesSignUp(false);
@@ -148,6 +165,32 @@ const LoginModal = (props) => {
       confirmPasswordError = "Password and Confirm Password should be same";
     }
 
+
+    // Checking if password is valid    
+    if (password && password.length < 8) {
+      setShowPasswordRules({ ...showPasswordRules, minLength: true });
+      validatePass = false;
+    }
+    if (password && !password.match(/[A-Z]/)) {
+      setShowPasswordRules({ ...showPasswordRules, oneUpperCase: true });
+      validatePass = false;
+    }
+    if (password && !password.match(/[a-z]/)) {
+      setShowPasswordRules({ ...showPasswordRules, oneLowerCase: true });
+      validatePass = false;
+    }
+    if (password && !password.match(/[0-9]/)) {
+      setShowPasswordRules({ ...showPasswordRules, oneNumber: true });
+      validatePass = false;
+    }
+    if (password && !password.match(/[!@#$%^&*]/)) {
+      setShowPasswordRules({ ...showPasswordRules, oneSpecialChar: true });
+      validatePass = false;
+    }
+
+
+
+    // Checking if username or email is already registered
     let userE = await verifyUserDetails({ username: signup.username, email: signup.email });
     if (userE.data && userE.data.username && usernameError == null) {
       usernameError = "Username already reigstered";
@@ -156,26 +199,7 @@ const LoginModal = (props) => {
       emailError = "Email already reigstered";
     }
 
-    if (password && password.length < 8) {
-      setShowPasswordRules({...showPasswordRules ,minLength: true});
-      validatePass = false;
-    }
-    if (password && !password.match(/[A-Z]/)) {
-      setShowPasswordRules({...showPasswordRules ,oneUpperCase: true});
-      validatePass = false;
-    }
-    if (password && !password.match(/[a-z]/)) {
-      setShowPasswordRules({...showPasswordRules ,oneLowerCase: true});
-      validatePass = false;
-    }
-    if (password && !password.match(/[0-9]/)) {
-      setShowPasswordRules({...showPasswordRules ,oneNumber: true});
-      validatePass = false;
-    }
-    if (password && !password.match(/[!@#$%^&*]/)) {
-      setShowPasswordRules({...showPasswordRules ,oneSpecialChar: true});
-      validatePass = false;
-    }
+
     if (emailError || passwordError || confirmPasswordError || usernameError || validatePass === false) {
       if (validatePass === false) {
         setShowPasswordRulesSignUp(true);
@@ -191,46 +215,57 @@ const LoginModal = (props) => {
       return;
     }
     let res = await sendOTP(signupDetail.email);
+    console.log(res);
     if (res.data && res.data.otp) {
       setIsLoading(false);
       setEmailOTP(res.data.otp);
     }
   }
 
+
   // Function to verify OTP
   const verifyOTPFunc = async () => {
-
-    if (Number(otpValue) === Number(emailOTP)) {
-      setIsLoading(true);
-      let res = await UserRegister({ username: signup.username, email: signup.email, password: signup.password });
-      if (res.data && res.status === 200) {
-        setIsLoading(false);
-        swal({
-          title: "Success",
-          text: "User Registered Successfully",
-          icon: "success",
-          button: "Ok",
-        });
-        setIsLogin(true);
+    try {
+      if (Number(otpValue) === Number(emailOTP)) {
+        setIsLoading(true);
+        let res = await UserRegister({ username: signup.username, email: signup.email, password: signup.password });
+        console.log(res);
+        if (res.data && res.status === 201) {
+          setIsLoading(false);
+          swal({
+            title: "Success",
+            text: "User Registered Successfully",
+            icon: "success",
+            button: "Ok",
+          });
+          setIsLogin(true);
+        }
+        else {
+          setIsLoading(false);
+          swal({
+            title: "Error",
+            text: "Something went wrong",
+            icon: "error",
+            button: "Ok",
+          });
+        }
       }
       else {
-        setIsLoading(false);
-        swal({
-          title: "Error",
-          text: "Something went wrong",
-          icon: "error",
-          button: "Ok",
-        });
+        alert(otpValue);
+        alert(emailOTP);
+        setSignupDetail({ ...signupDetail, otpError: "OTP is not valid" });
       }
-    }
-    else {
-      alert(otpValue);
-      alert(emailOTP);
-      setSignupDetail({ ...signupDetail, otpError: "OTP is not valid" });
+    } catch {
+      swal({
+        title: "Error",
+        text: "Something went wrong",
+        icon: "error",
+        button: "Ok",
+      });
     }
   }
 
-  // Login 
+  // Login Function to handle login form submit
   const loginFunc = async () => {
 
     setIsLoading(true);
@@ -319,7 +354,7 @@ const LoginModal = (props) => {
                     </div>
                     {loginDetail.passwordError && (<p id="standard_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400">{loginDetail.passwordError}</p>)}
                   </div>
-
+                  <a href="/account/password/forgot-password" className={`text-xs block pt-4 hover:text-[${styles.colors.green}] cursor-pointer`}>Forgot Password ?</a>
                   <button
                     className={`text-sm z-[40] dark:bg-[${styles.colors.green}] ${landingStyles.button} dark:text-[${styles.colors.ltextColor}] bg-[${styles.colors.background}] text-[${styles.colors.textColor}] rounded-3xl px-8 py-2 bg-[${styles.colors.green}] mt-8 ${login.password && login.username ? "cursor-pointer" : "cursor-not-allowed"}`}
                     onClick={() => loginFunc()}
@@ -330,8 +365,7 @@ const LoginModal = (props) => {
                     </svg>) : "Continue"}
                   </button>
                   <div className="flex space-x-3 justify-center lg:justify-start  py-4">
-                    <img src={Google} className="h-8 w-8 border-2 border-gray-300 rounded-full p-1 cursor-pointer" alt="Google" />
-                    <img src={Microsoft} className="h-8 w-8 border-2 border-gray-300 rounded-full p-1 cursor-pointer" alt="Google" />
+                    <a href={`${server_url}/social/auth/google`}><img src={Google} className="h-8 w-8 border-2 border-gray-300 rounded-md p-1 cursor-pointer" alt="Google" /></a>
                   </div>
                   <div className="text-sm">
                     Don't yet have an account yet? <span className="text-green-600 cursor-pointer" onClick={() => setIsLogin(false)}>Sign Up</span>
@@ -417,8 +451,7 @@ const LoginModal = (props) => {
                       </button>
 
                       <div className="flex space-x-3 justify-center lg:justify-start  py-4">
-                        <img src={Google} className="h-8 w-8 border-2 border-gray-300 rounded-full p-1 cursor-pointer" alt="Google" />
-                        <img src={Microsoft} className="h-8 w-8 border-2 border-gray-300 rounded-full p-1 cursor-pointer" alt="Google" />
+                        <img src={Google} className="h-8 w-8 border-2 border-gray-300 rounded-md p-1 cursor-pointer" alt="Google" />
                       </div>
                     </div>
                   )}
