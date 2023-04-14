@@ -1,3 +1,5 @@
+//  Blogs Shown Under Discover More Section
+
 import React from "react";
 
 // Theme
@@ -7,6 +9,8 @@ import styles from "../../assets/theme.json";
 import { BiCompass } from "react-icons/bi";
 
 const Discover = () => {
+
+  // Blog Tags Previewed on the Discover Page
   const tags = [
     "Programming",
     "Technology",
@@ -17,6 +21,7 @@ const Discover = () => {
     "Writing",
   ];
 
+  // Demo Blogs Previewed on the Discover Page
   const blogs = [
     {
       blog_title_image:
@@ -94,16 +99,15 @@ const Discover = () => {
         </p>
       </div>
 
+      {/* Mapping Blogs */}
       <div className=" grid grid-flow-row md:grid-flow-col grid-rows-12 md:grid-cols-12 md:grid-rows-1 py-4">
         <div className="row-span-12 md:col-span-8 order-1 md:order-none pr-4 pl-4">
           {blogs.map((item, index) => {
             return (
               <div
-                className={`my-8 md:my-16 flex items-center ${
-                  index === 0 ? "md:mt-8" : ""
-                } text-[${styles.colors.ltextColor}] dark:text-[${
-                  styles.colors.textColor
-                }]`}
+                className={`my-8 md:my-16 flex items-center ${index === 0 ? "md:mt-8" : ""
+                  } text-[${styles.colors.ltextColor}] dark:text-[${styles.colors.textColor
+                  }]`}
               >
                 <div className="w-10/12">
                   <div className="flex space-x-3">
@@ -138,6 +142,7 @@ const Discover = () => {
           })}
           <button className={`border-[0.5px] dark:border-[${styles.colors.textColor}] border-[${styles.colors.ltextColor}] mt-10 mb-5 text-sm block sm:hidden px-6 py-2 mx-auto rounded-3xl`}>Load More Stories</button>
         </div>
+        {/* Mappings Blog Tags */}
         <div className="row-span-12 md:col-span-4 top-0 ml-5">
           <p className="f-helvetica capitalize text-sm mb-3">
             Discover more of what matters to you

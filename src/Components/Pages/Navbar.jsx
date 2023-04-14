@@ -11,12 +11,12 @@ import { logOut } from "../../features/user/userSlice";
 
 // Icons
 import { BiMenu } from "react-icons/bi";
+import swal from "sweetalert";
 
 const Navbar = () => {
 
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  console.log(user);
 
   const [showMenu, setShowMenu] = React.useState(false);
 
@@ -222,7 +222,25 @@ const Navbar = () => {
               <li>
                 <p
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white cursor-pointer"
-                  onClick={()=>{dispatch(logOut())}}
+                  onClick={() => {
+                    try {
+                      setShowMenu(false);
+                      dispatch(logOut());
+                      swal({
+                        title: "Logged Out",
+                        text: "You have been logged out successfully",
+                        icon: "success",
+                        button: "Ok",
+                      });
+                    } catch {
+                      swal({
+                        title: "Error",
+                        text: "There was an error logging you out",
+                        icon: "error",
+                        button: "Ok",
+                      });
+                    }
+                  }}
                 >
                   Sign out
                 </p>
