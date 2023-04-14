@@ -451,7 +451,7 @@ const LoginModal = (props) => {
                       </button>
 
                       <div className="flex space-x-3 justify-center lg:justify-start  py-4">
-                        <img src={Google} className="h-8 w-8 border-2 border-gray-300 rounded-md p-1 cursor-pointer" alt="Google" />
+                      <a href={`${server_url}/social/auth/google`}><img src={Google} className="h-8 w-8 border-2 border-gray-300 rounded-md p-1 cursor-pointer" alt="Google" /></a>
                       </div>
                     </div>
                   )}
