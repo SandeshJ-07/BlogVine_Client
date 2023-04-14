@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import { persistor, store } from "./app/store.js";
+import { PersistGate } from "redux-persist/integration/react";
 
 // Stylesheets
 import "../src/assets/stylesheet/index.css";
@@ -17,20 +16,28 @@ import Discover from "./Pages/Discover";
 import Terms from "./Pages/Terms";
 import Privacy from "./Pages/Privacy";
 import ErrorPage from "./Pages/Error";
+import SocialAuth from "./Pages/SocialLogin.jsx";
+import ForgotPassword from "./Pages/ForgotPassword.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/discover" element={ <Discover/> }/>
-        <Route path="/about" element={<AboutPage/>}/>
-        <Route path="/terms" element ={<Terms/>}/>
-        <Route path="/privacy" element={<Privacy/>}/>
-
-        <Route path="*" element={<ErrorPage/>} />
-      </Routes>
-    </Router>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/discover" element={<Discover />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/social/login/" element ={<SocialAuth/>}/>
+            <Route path="/account/password/forgot-password" element={<ForgotPassword />} />
+            <Route path="/account/password/forgot-password/:token" element={<ForgotPassword />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </Router>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );
