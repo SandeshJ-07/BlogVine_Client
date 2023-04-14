@@ -18,6 +18,11 @@ const SocialAuth = () => {
             window.location.href = '/';
         };
         func();
+        return(
+            <div className="h-screen w-screen flex items-center justify-center text-center">
+                <p>Redirecting you to home page...</p>
+            </div>
+        );
     }, [dispatch]);
 };
 
