@@ -48,7 +48,7 @@ const ForgotPassword = () => {
         setConfirmPass(e.target.value);
     }
 
-    
+
     const [passAlert, setPassAlert] = React.useState(false);
 
     const changePasswordFunc = async () => {
@@ -90,7 +90,7 @@ const ForgotPassword = () => {
 
             // Update User password
             let res = await updateUserPassword({ email: newEmail, password: newPass });
-            if (res.status === 200) {
+            if (res && res.status && res.status === 200) {
                 swal({
                     title: "Success",
                     description: "Password Changed Successfully",
@@ -104,7 +104,7 @@ const ForgotPassword = () => {
             else {
                 swal({
                     title: "Error",
-                    description: "Something went wrong",
+                    description: res,
                     icon: "error",
                     button: "OK",
                 });
@@ -142,23 +142,23 @@ const ForgotPassword = () => {
 
     // Function to Call Forgot Password API
     const forgotPasswordFunc = async () => {
-
-        let res1 = await getUserDetails({ detail: email });
-        if (res1.status !== 200) {
-            setEmailAlert("Email that you have entered is not registered with us");
-            return;
-        }
-
         setMailSent(null);
         setIsLoading(true);
         setEmailAlert(null);
+        let res1 = await getUserDetails({ detail: email });
+        if (res1 === undefined || res1 === "undefined" || !res1) {
+            setIsLoading(false);
+            await setEmailAlert("Email that you have entered is not registered with us");
+            return;
+        }
         // Check email regex
         if (!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+            setIsLoading(false);
             setEmailAlert("Please enter a valid email address");
             return;
         }
         let res = await forgotPassword({ email: email });
-        if (res.status === 200) {
+        if (res && res.status === 200) {
             swal({
                 title: "Email Sent",
                 description: "Check your email for the link to reset your password",
@@ -190,7 +190,7 @@ const ForgotPassword = () => {
                         Reset Password
                     </p>
                     <p className='py-3 text-gray-400'>Forgot your password amidst the blogs ? Don't worry we are here for you.</p>
-                    {token !== undefined && token !== null ? (<div className={`rounded-md dark:bg-white bg-gray-500 p-5 px-8 w-4/12 mx-auto my-3 text-left dark:text-[${styles.colors.ltextColor}] text-[${styles.colors.textColor}]`}>
+                    {token !== undefined && token !== null ? (<div className={`rounded-md dark:bg-white bg-gray-500 p-5 px-8 md:w-4/12 sm:w-1/2 w-3/4  mx-auto my-3 text-left dark:text-[${styles.colors.ltextColor}] text-[${styles.colors.textColor}]`}>
                         <div>
                             <p className={`text-lg font-semibold`}>Reset Password</p>
                         </div>
@@ -200,10 +200,10 @@ const ForgotPassword = () => {
                             <div>
                                 <div className='pt-4 '>
                                     <label className='block text-sm text-semibold text-gray-700'>New password </label>
-                                    <input type={showPass?"text":"password"} placeholder="Password" className='block rounded-sm mb-3 mt-1 w-full focus:outline-none active:outline-none focus:border-none active:border-none' onChange={passwordHandler} />
+                                    <input type={showPass ? "text" : "password"} placeholder="Password" className='block rounded-sm mb-3 mt-1 w-full focus:outline-none active:outline-none focus:border-none active:border-none' onChange={passwordHandler} />
                                     <label className='block text-sm text-semibold text-gray-700'>Confirm new password </label>
-                                    <input type={showPass?"text":"password"} placeholder="Password" className='block rounded-sm mb-3 mt-1 w-full focus:outline-none active:outline-none focus:border-none active:border-none' onChange={confrmPassHandler} /></div>
-<p className='text-xs ml-auto text-right cursor-pointer' onClick={()=>setShowPass(!showPass)}> {showPass ? "Hide ": "Show "}Password</p>
+                                    <input type={showPass ? "text" : "password"} placeholder="Password" className='block rounded-sm mb-3 mt-1 w-full focus:outline-none active:outline-none focus:border-none active:border-none' onChange={confrmPassHandler} /></div>
+                                <p className='text-xs ml-auto text-right cursor-pointer' onClick={() => setShowPass(!showPass)}> {showPass ? "Hide " : "Show "}Password</p>
                                 <div className="flex flex-col w-10/12 lg:w-3/4 mx-auto lg:mx-0 my-2">
                                     <p className="text-xs text-gray-500 dark:text-gray-500 font-semibold">Password must contain:</p>
                                     <div className="flex flex-row items-center mt-2">
@@ -239,7 +239,7 @@ const ForgotPassword = () => {
                         </div>
                         <p className='text-center text-sm py-4'><span className='cursor-pointer mx-1 underline' onClick={() => { setLoginOpenState(true); }}>Login</span></p>
                     </div>) : (
-                        <div className={`rounded-md dark:bg-white bg-gray-500 p-5 px-8 w-4/12 mx-auto my-3 text-left dark:text-[${styles.colors.ltextColor}] text-[${styles.colors.textColor}]`}>
+                        <div className={`rounded-md dark:bg-white bg-gray-500 p-5 px-8 md:w-4/12 sm:w-1/2 w-3/4 mx-auto my-3 text-left dark:text-[${styles.colors.ltextColor}] text-[${styles.colors.textColor}]`}>
                             <div>
                                 <p className={`text-lg font-semibold`}>Reset Password</p>
                                 <p className='text-sm py-3'>Enter your email address below and we'll send you a link to reset your password.</p>

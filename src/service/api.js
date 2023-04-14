@@ -109,5 +109,6 @@ export const getUserFromForgotToken = async (token) => {
     return res;
   } catch (error) {
     console.log("Error Calling Get User From Forgot Token : " + error.message);
+    return error.message;
   }
 }
